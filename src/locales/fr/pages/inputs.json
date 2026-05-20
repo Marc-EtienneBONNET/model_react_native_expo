@@ -1,0 +1,23 @@
+{
+	"sections": {
+		"text": "Input Texte",
+		"textarea": "Input Zone de texte",
+		"number": "Input Nombre",
+		"code": "Input Code",
+		"date": "Input Date",
+		"email": "Input Email",
+		"phone": "Input Téléphone"
+	},
+	"common": {
+		"title": "C est le titre",
+		"error": "erreur",
+		"helperAbove10": "Un nombvre au dessus de 10",
+		"helper": "on aide "
+	},
+	"placeholders": {
+		"hello": "bonjour...",
+		"coucou": "coucou",
+		"salut": "salut",
+		"ten": "10..."
+	}
+}

@@ -1,0 +1,43 @@
+type TypeShades = {
+	a: string;
+	b: string;
+	c: string;
+	d: string;
+	e: string;
+	f: string;
+	g: string;
+	h: string;
+	i: string;
+	j: string;
+	k: string;
+};
+
+export type TypePalette = {
+	transparent: string;
+	white: TypeShades;
+	black: TypeShades;
+	primary: TypeShades;
+	secondary: TypeShades;
+	destructive: TypeShades;
+	success: TypeShades;
+	slate: TypeShades;
+	gray: TypeShades;
+	zinc: TypeShades;
+	red: TypeShades;
+	orange: TypeShades;
+	amber: TypeShades;
+	yellow: TypeShades;
+	lime: TypeShades;
+	green: TypeShades;
+	emerald: TypeShades;
+	teal: TypeShades;
+	cyan: TypeShades;
+	sky: TypeShades;
+	blue: TypeShades;
+	indigo: TypeShades;
+	violet: TypeShades;
+	purple: TypeShades;
+	fuchsia: TypeShades;
+	pink: TypeShades;
+	rose: TypeShades;
+};

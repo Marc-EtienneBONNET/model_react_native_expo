@@ -1,0 +1,4 @@
+{
+	"errorChildInvalidReactElement": "ButtonMenu: chaque enfant doit être un élément React valide",
+	"errorChildMustBeButton": "ButtonMenu: chaque enfant doit être un composant Button"
+}

@@ -1,0 +1,13 @@
+{
+	"basicDialogButton": "dialogue basique {state}",
+	"cantCloseDialogButton": "dialogue qu'on ne peut pas fermer {state}",
+	"basicDialogContent": "dialogue basique",
+	"cantCloseDialogContent": "dialogue qu'on ne peut pas fermer ",
+	"testToast": "tester le toast",
+	"errorToast": {
+		"title": "toast d'erreur",
+		"subtitle": "coucou les amis"
+	},
+	"options": "Options",
+	"menuItem": "cocuou"
+}

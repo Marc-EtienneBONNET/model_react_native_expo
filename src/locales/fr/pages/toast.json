@@ -1,0 +1,15 @@
+{
+	"basic": {
+		"title": "toast basique",
+		"subtitle": "coucou les amis"
+	},
+	"success": {
+		"title": "toast de succès",
+		"subtitle": "coucou les amis coucou les amiscoucou les amiscoucou les amiscoucou les amiscoucou les amiscoucou les amiscoucou les amiscoucou les amiscoucou les amiscoucou les amis"
+	},
+	"error": {
+		"title": "toast d'erreur",
+		"subtitle": "coucou les amis"
+	},
+	"buttonLabel": "toast basique {state}"
+}

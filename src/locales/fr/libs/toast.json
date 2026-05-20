@@ -1,0 +1,3 @@
+{
+	"errorContextOutsideProvider": "useContextToast doit être utilisé dans un ContextToastProvider"
+}

@@ -1,0 +1,4 @@
+{
+	"errorInvalidChild": "AccordeonParent n'accepte que des AccordeonChild en enfants.",
+	"errorChildOutsideParent": "AccordeonChild doit être utilisé à l'intérieur d'un AccordeonParent."
+}

@@ -1,0 +1,29 @@
+{
+	"errorContextOutsideProvider": "useContextInputs doit être utilisé dans un ContextInputsProvider",
+	"date": {
+		"placeholderDate": "JJ/MM/AAAA",
+		"placeholderDateTime": "JJ/MM/AAAA HH:mm"
+	},
+	"email": {
+		"errorInvalid": "Email invalide",
+		"placeholder": "email@exemple.com"
+	},
+	"heure": {
+		"placeholder": "HH:MM"
+	},
+	"phone": {
+		"countries": {
+			"france": "France",
+			"belgique": "Belgique",
+			"suisse": "Suisse",
+			"espagne": "Espagne",
+			"royaumeUni": "Royaume-Uni",
+			"usaCanada": "USA / Canada",
+			"allemagne": "Allemagne"
+		},
+		"errorDigitsRequired": "{digits} chiffres requis après {prefix}"
+	},
+	"keyboardAccessory": {
+		"done": "OK"
+	}
+}
