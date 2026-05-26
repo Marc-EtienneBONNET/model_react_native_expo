@@ -5,6 +5,7 @@ import { VScroll } from "../../libs/basics/vScroll";
 import { VStack } from "../../libs/basics/vStack";
 import { Btn } from "../../libs/design/buttons";
 import { useTranslation } from "../../libs/i18n";
+import { socket } from "../../socket";
 import {
 	useDeleteExempleMutation,
 	useLazyGetExempleQuery,
@@ -60,6 +61,14 @@ export function PageButton() {
 					buttonVariant={"solid"}
 					onPress={() => {
 						getDelete({});
+					}}
+				/>
+				<Btn.basic
+					flex={1}
+					text={t("socket")}
+					buttonVariant={"solid"}
+					onPress={() => {
+						socket.emit("ping", {});
 					}}
 				/>
 				<HScroll gap={EnumGap.s} padding={EnumGap.s}>

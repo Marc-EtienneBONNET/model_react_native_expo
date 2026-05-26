@@ -3,6 +3,7 @@
 	"post":"Appel a l api exemple post",
 	"delete":"Appel a l api exemple delete",
 	"patch":"Appel a l api exemple patch",
+	"socket":"Appel socket exemple ping",
 
 	"basic": "PageBtn.basic",
 	"long": "PageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basic",
