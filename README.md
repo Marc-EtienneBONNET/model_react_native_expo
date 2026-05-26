@@ -74,7 +74,7 @@ model-react-native/
     ├── pages/                        # Écrans (un dossier par écran)
     ├── routers/                      # Navigation
     ├── themes/                       # Couleurs, spacing, radius, thèmes light/dark
-    ├── hooks/                        # Hooks globaux (useObserved*, useToast)
+    ├── hooks/                        # Hooks globaux (useToast)
     ├── utils/                        # Utilitaires (getRandomColor)
     ├── locales/fr/                   # Fichiers de traduction (par namespace)
     │   ├── libs/                     # Trad des composants de la lib
@@ -274,9 +274,6 @@ Stocke le toast courant (`TypePropsToast | undefined`) et expose `newToast()`. L
 ## Hooks globaux
 
 `src/hooks/`
-
-### `useObservedHeight` / `useObservedWidth`
-Observent la taille d'une ref (`onLayout`) et exposent `{ ref, height/width, breakpoint }`. Le breakpoint est une lettre `a` → `z` mappée à des paliers de pixels (`EnumBreakpointHeight` / `EnumBreakpointWidth`). Utile pour des layouts qui doivent réagir à la taille d'un container (pas à celle de l'écran).
 
 ### `useToast`
 Helper minimal au-dessus de `useContextToast` : prend `{ propsToast, isOpen }`. Si `isOpen` → push le toast ; sinon → clear.

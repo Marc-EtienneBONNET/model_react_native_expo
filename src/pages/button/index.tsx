@@ -5,11 +5,21 @@ import { VScroll } from "../../libs/basics/vScroll";
 import { VStack } from "../../libs/basics/vStack";
 import { Btn } from "../../libs/design/buttons";
 import { useTranslation } from "../../libs/i18n";
+import {
+	useDeleteExempleMutation,
+	useLazyGetExempleQuery,
+	usePatchExempleMutation,
+	usePostExempleMutation,
+} from "../../store/exemple/exemple";
 import { EnumColors } from "../../themes/colors/enum/enumColors";
 import { EnumGap } from "../../themes/spacing";
 
 export function PageButton() {
 	const t = useTranslation("pages/button");
+	const [getExemple] = useLazyGetExempleQuery();
+	const [getPost] = usePostExempleMutation();
+	const [getPatch] = usePatchExempleMutation();
+	const [getDelete] = useDeleteExempleMutation();
 
 	return (
 		<VStack
@@ -20,6 +30,38 @@ export function PageButton() {
 			padding={EnumGap.m}
 		>
 			<VScroll gap={EnumGap.s}>
+				<Btn.basic
+					flex={1}
+					text={t("get")}
+					buttonVariant={"solid"}
+					onPress={() => {
+						getExemple({});
+					}}
+				/>
+				<Btn.basic
+					flex={1}
+					text={t("post")}
+					buttonVariant={"solid"}
+					onPress={() => {
+						getPost({});
+					}}
+				/>
+				<Btn.basic
+					flex={1}
+					text={t("patch")}
+					buttonVariant={"solid"}
+					onPress={() => {
+						getPatch({});
+					}}
+				/>
+				<Btn.basic
+					flex={1}
+					text={t("delete")}
+					buttonVariant={"solid"}
+					onPress={() => {
+						getDelete({});
+					}}
+				/>
 				<HScroll gap={EnumGap.s} padding={EnumGap.s}>
 					<Btn.basic flex={1} text={t("basic")} buttonVariant={"solid"} />
 					<Btn.basic

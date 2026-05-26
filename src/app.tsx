@@ -5,6 +5,7 @@ import {
 	SafeAreaProvider,
 	useSafeAreaInsets,
 } from "react-native-safe-area-context";
+import { Provider } from "react-redux";
 
 import { VStack } from "./libs/basics/vStack";
 import { KeyboardAccessory } from "./libs/design/inputs/keyboardAccessory";
@@ -12,6 +13,7 @@ import { Toast } from "./libs/design/toast";
 import { ContextToastProvider } from "./libs/design/toast/contextToast";
 import { useContextToast } from "./libs/design/toast/contextToast/hooks/useContextToast";
 import Router from "./routers";
+import { store } from "./store";
 import { EnumColors } from "./themes/colors/enum/enumColors";
 import { darkTheme } from "./themes/darkTheme";
 import { lightTheme } from "./themes/lightTheme";
@@ -22,14 +24,16 @@ export default function App() {
 	const _activeTheme = colorScheme === "dark" ? darkTheme : lightTheme;
 
 	return (
-		<SafeAreaProvider>
-			<ThemeProvider theme={_activeTheme}>
-				<ContextToastProvider>
-					<StatusBar style="auto" />
-					<AppContent />
-				</ContextToastProvider>
-			</ThemeProvider>
-		</SafeAreaProvider>
+		<Provider store={store}>
+			<SafeAreaProvider>
+				<ThemeProvider theme={_activeTheme}>
+					<ContextToastProvider>
+						<StatusBar style="auto" />
+						<AppContent />
+					</ContextToastProvider>
+				</ThemeProvider>
+			</SafeAreaProvider>
+		</Provider>
 	);
 }
 

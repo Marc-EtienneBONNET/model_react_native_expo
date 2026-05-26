@@ -1,4 +1,9 @@
 {
+	"get":"Appel a l api exemple get",
+	"post":"Appel a l api exemple post",
+	"delete":"Appel a l api exemple delete",
+	"patch":"Appel a l api exemple patch",
+
 	"basic": "PageBtn.basic",
 	"long": "PageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basicPageBtn.basic",
 	"options": "Options",
