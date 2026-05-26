@@ -339,7 +339,7 @@ Pattern **natif Expo SDK 49+** : préfixe `EXPO_PUBLIC_*` → exposé à `proces
 
 ### Fichiers
 
-- **`.env`** — valeurs locales (ignoré par git).
+- **`.env`** — valeurs locales (commité dans ce template pour faciliter le clone).
 - **`.env.example`** — template committé.
 - **`env.d.ts`** — typage de `process.env` pour l'autocomplete.
 - **`src/env.ts`** — wrapper qui **valide la présence** des vars au démarrage (throw si manquante) et expose un objet `env` typé.
