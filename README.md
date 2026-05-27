@@ -20,9 +20,12 @@ Quand je démarre une nouvelle app mobile, je pars de ce repo, je renomme le pro
 10. [Hooks globaux](#hooks-globaux)
 11. [Utils](#utils)
 12. [Internationalisation (i18n)](#internationalisation-i18n)
-13. [Variables d'environnement](#variables-denvironnement)
-14. [Conventions de code](#conventions-de-code)
-15. [Scripts npm](#scripts-npm)
+13. [State management (Redux + RTK Query)](#state-management-redux--rtk-query)
+14. [Socket.io client](#socketio-client)
+15. [Variables d'environnement](#variables-denvironnement)
+16. [Conventions de code](#conventions-de-code)
+17. [Scripts npm](#scripts-npm)
+18. [Historique des décisions structurantes](#historique-des-décisions-structurantes)
 
 ---
 
@@ -35,10 +38,15 @@ Quand je démarre une nouvelle app mobile, je pars de ce repo, je renomme le pro
 | React Native | 0.81.5 | — |
 | Shopify Restyle | ^2.4.5 | Thème + styling typé |
 | React Navigation | ^7.x | Routing (bottom tabs + native stack) |
+| Redux Toolkit | ^2.12 | State management + RTK Query (HTTP) |
+| react-redux | ^9.3 | Bindings React |
+| @react-native-async-storage/async-storage | 2.2.0 | Persistance locale (token, etc.) |
+| socket.io-client | ^4.8 | WebSocket / temps réel |
 | Phosphor React Native | ^3.0.6 | Icônes |
 | React Native Reanimated | ~4.1.1 | Animations |
 | react-native-modal-datetime-picker | ^18.0.0 | Picker date/heure |
 | react-native-svg | 15.12.1 | Fade scroll, gradients |
+| expo-blur | ~15.0 | Backdrops Dialog / Loader |
 | Biome | ^2.3.7 | Lint + format (pas d'ESLint/Prettier) |
 | TypeScript | ~5.9.2 | Strict mode |
 
@@ -83,6 +91,10 @@ model-react-native/
         ├── basics/                   # Primitives (Box, Text, VStack, etc.)
         ├── design/                   # Composants design (Button, Input, Toast, etc.)
         └── i18n/                     # Hook de traduction custom
+    ├── store/                        # Redux Toolkit + RTK Query
+    │   ├── index.tsx                 # Configure store, base API, headers
+    │   └── exemple/                  # Exemple d'endpoint RTK Query (GET/POST/PATCH/DELETE)
+    └── socket/                       # Client Socket.io (auth = token + locale)
 ```
 
 Chaque composant complexe suit le pattern :
@@ -105,14 +117,17 @@ Chaque composant complexe suit le pattern :
 
 Le composant racine (`App.tsx`) empile les providers dans cet ordre :
 
-1. **`SafeAreaProvider`** — fournit les insets (status bar, home indicator).
-2. **`ThemeProvider`** (Shopify Restyle) — choisit `darkTheme` ou `lightTheme` via `useColorScheme()`.
-3. **`ContextToastProvider`** — state global du toast.
-4. **`AppContent`** — layout `flex: 1`, edge-to-edge :
+1. **`Provider`** (react-redux) — store Redux global (RTK Query inclus).
+2. **`SafeAreaProvider`** — fournit les insets (status bar, home indicator).
+3. **`ThemeProvider`** (Shopify Restyle) — choisit `darkTheme` ou `lightTheme` via `useColorScheme()`.
+4. **`ContextToastProvider`** — state global du toast.
+5. **`AppContent`** — layout `flex: 1`, edge-to-edge :
    - Bandeau du haut à la hauteur de `insets.top`.
    - `Router` au milieu (flex: 1).
    - `Toast` en overlay (positionné en haut à droite).
    - `KeyboardAccessory` (iOS uniquement) — barre OK au-dessus du clavier.
+
+Au mount, `AppContent` ouvre aussi la connexion Socket.io (auto-connect désactivé par défaut dans le client → `socket.connect()` explicite) et log les événements `pong` reçus.
 
 ---
 
@@ -330,6 +345,74 @@ t("phone.errorDigitsRequired", { digits: 9, prefix: "+33" });
 2. Importer le JSON dans `src/libs/i18n/translations.ts`.
 3. L'enregistrer dans `translations.fr` sous la clé `"<libs|pages>/<nom>"`.
 4. Utiliser : `const t = useTranslation("<libs|pages>/<nom>"); t("maCle")`.
+
+---
+
+## State management (Redux + RTK Query)
+
+`src/store/`
+
+### Store
+
+`src/store/index.tsx` — store Redux Toolkit, monté à la racine via `<Provider store={store}>`.
+
+- **Reducer racine** : `api` (RTK Query).
+- **Middleware** : `api.middleware` + `setupListeners(store.dispatch)` (refetch sur focus / reconnect).
+- **Types exportés** : `TypeRootState`, `TypeAppDispatch`.
+
+### API HTTP via RTK Query
+
+`baseApi` (dans `store/index.tsx`) configure `fetchBaseQuery` :
+
+- **`baseUrl`** = `env.apiUrl` (variable `EXPO_PUBLIC_API_URL`).
+- **`prepareHeaders`** — pour chaque requête, ajoute :
+  - `Accept-Language` = la locale i18n courante.
+  - `Authorization: Bearer <token>` — token lu de manière asynchrone via `AsyncStorage`.
+
+### Définir un endpoint
+
+Pattern dans `src/store/exemple/` :
+
+- **`type.tsx`** — types `TypeExempleRequest`, `TypeExempleResponse`.
+- **`exemple.tsx`** — `baseApi.injectEndpoints({...})` qui déclare quatre opérations CRUD (`getExemple`, `postExemple`, `patchExemple`, `deleteExemple`) avec leurs `query` paramétrés.
+- Export des hooks générés : `useLazyGetExempleQuery`, `usePostExempleMutation`, etc.
+
+Pour ajouter une feature : créer un dossier `store/<feature>/`, déclarer les endpoints via `injectEndpoints`, importer le fichier au boot pour que les hooks soient disponibles.
+
+### Persistance
+
+`@react-native-async-storage/async-storage` est branché côté token de connexion (lecture par RTK Query au moment de bâtir les headers). Pas de `redux-persist` — la persistance est volontairement ciblée sur les valeurs critiques (auth) plutôt que sur le store entier.
+
+---
+
+## Socket.io client
+
+`src/socket/index.tsx` — crée un client `socket.io-client` :
+
+- **URL** = `env.apiUrl` (même endpoint que l'API REST).
+- **`autoConnect: false`** — la connexion est ouverte explicitement par `AppContent` au mount.
+- **`auth`** — callback async qui pose `{ token, locale }` au handshake :
+  - `token` lu depuis `AsyncStorage`.
+  - `locale` lue depuis le système i18n.
+
+Côté serveur ([`model_node_express`](../model_node_express)), ces deux valeurs sont remontées dans `socket.data.config` et accessibles dans tous les handlers.
+
+### Listener / emit
+
+Tout listener est posé dans `AppContent` (ou un hook dédié) :
+
+```ts
+useEffect(() => {
+  socket.on("pong", () => console.info("pong received"));
+  socket.connect();
+  return () => {
+    socket.off("pong");
+    socket.disconnect();
+  };
+}, []);
+```
+
+Pour émettre : `socket.emit("ping")` depuis n'importe quel composant.
 
 ---
 
