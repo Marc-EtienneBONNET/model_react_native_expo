@@ -5,6 +5,7 @@ import { EnumGap } from "../../../../themes/spacing";
 import { Icon } from "../../../basics/icon";
 import { useTranslation } from "../../../i18n";
 import { Btn } from "../../buttons";
+import { EnumButtonMenuVariant } from "../../buttons/buttonMenu/variant/enumButtonMenuVariant";
 import { useContextInputs } from "../contextInput/hooks/useContextInputs";
 import { InputText } from "../inputsText";
 import type { EnumInputSize } from "../inputsText/size/enumInputSize";
@@ -186,7 +187,7 @@ export function InputPhone({
 			leftComponent={
 				<Btn.menu
 					text={_country.prefix}
-					buttonVariant={"ghost"}
+					variant={EnumButtonMenuVariant.ghost}
 					paddingHorizontal={EnumGap.null}
 					paddingVertical={EnumGap.null}
 				>

@@ -10,10 +10,8 @@ import { VStack } from "../../../basics/vStack";
 import { useTranslation } from "../../../i18n";
 import type { TypeButtonProps } from "./type/typeButtonProps";
 import { deepReplaceString } from "./utils/deepReplaceString";
-import {
-	COLOR_SCHEMA_SELECTED,
-	EnumButtonVariant,
-} from "./variant/enumButtonVariant";
+import { ButtonVariant, COLOR_SCHEMA_SELECTED } from "./variant/buttonVariant";
+import { EnumButtonVariant } from "./variant/enumButtonVariant";
 
 type TypeResolvedButtonVariant = {
 	color: TypeBoxColorKey;
@@ -23,7 +21,7 @@ type TypeResolvedButtonVariant = {
 
 export function Button({
 	text,
-	buttonVariant = "solid",
+	variant = EnumButtonVariant.solid,
 	colorSchema = EnumColors.primary.a,
 	isActive = false,
 	iconLeft,
@@ -38,19 +36,19 @@ export function Button({
 	}
 
 	const _resolvedVariantKey =
-		buttonVariant === "ghostSelected"
+		variant === EnumButtonVariant.ghostSelected
 			? isActive
-				? "solid"
-				: "ghost"
-			: buttonVariant;
+				? EnumButtonVariant.solid
+				: EnumButtonVariant.ghost
+			: variant;
 
 	const _variant = deepReplaceString(
-		EnumButtonVariant[_resolvedVariantKey],
+		ButtonVariant[_resolvedVariantKey],
 		COLOR_SCHEMA_SELECTED,
 		colorSchema,
 	) as unknown as TypeResolvedButtonVariant;
 
-	const _isLink = _resolvedVariantKey === "link";
+	const _isLink = _resolvedVariantKey === EnumButtonVariant.link;
 
 	return (
 		<TouchableOpacity

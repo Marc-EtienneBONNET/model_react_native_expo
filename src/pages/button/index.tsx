@@ -34,7 +34,7 @@ export function PageButton() {
 				<Btn.basic
 					flex={1}
 					text={t("get")}
-					buttonVariant={"solid"}
+					variant={"solid"}
 					onPress={() => {
 						getExemple({});
 					}}
@@ -42,7 +42,7 @@ export function PageButton() {
 				<Btn.basic
 					flex={1}
 					text={t("post")}
-					buttonVariant={"solid"}
+					variant={"solid"}
 					onPress={() => {
 						getPost({});
 					}}
@@ -50,7 +50,7 @@ export function PageButton() {
 				<Btn.basic
 					flex={1}
 					text={t("patch")}
-					buttonVariant={"solid"}
+					variant={"solid"}
 					onPress={() => {
 						getPatch({});
 					}}
@@ -58,7 +58,7 @@ export function PageButton() {
 				<Btn.basic
 					flex={1}
 					text={t("delete")}
-					buttonVariant={"solid"}
+					variant={"solid"}
 					onPress={() => {
 						getDelete({});
 					}}
@@ -66,71 +66,71 @@ export function PageButton() {
 				<Btn.basic
 					flex={1}
 					text={t("socket")}
-					buttonVariant={"solid"}
+					variant={"solid"}
 					onPress={() => {
 						socket.emit("ping", {});
 					}}
 				/>
 				<HScroll gap={EnumGap.s} padding={EnumGap.s}>
-					<Btn.basic flex={1} text={t("basic")} buttonVariant={"solid"} />
+					<Btn.basic flex={1} text={t("basic")} variant={"solid"} />
 					<Btn.basic
 						flex={1}
 						text={t("basic")}
-						buttonVariant={"solid"}
+						variant={"solid"}
 						colorSchema={EnumColors.secondary.default}
 					/>
 					<Btn.basic
 						flex={1}
 						text={t("basic")}
-						buttonVariant={"solid"}
+						variant={"solid"}
 						colorSchema={EnumColors.destructive.default}
 					/>
 					<Btn.basic
 						flex={1}
 						text={t("basic")}
-						buttonVariant={"solid"}
+						variant={"solid"}
 						colorSchema={EnumColors.blue.default}
 					/>
 				</HScroll>
 				<HScroll gap={EnumGap.s} padding={EnumGap.s}>
-					<Btn.basic flex={1} text={t("basic")} buttonVariant={"outline"} />
+					<Btn.basic flex={1} text={t("basic")} variant={"outline"} />
 					<Btn.basic
 						flex={1}
 						text={t("basic")}
-						buttonVariant={"outline"}
+						variant={"outline"}
 						colorSchema={EnumColors.secondary.default}
 					/>
 					<Btn.basic
 						flex={1}
 						text={t("basic")}
-						buttonVariant={"outline"}
+						variant={"outline"}
 						colorSchema={EnumColors.destructive.default}
 					/>
 					<Btn.basic
 						flex={1}
 						text={t("basic")}
-						buttonVariant={"outline"}
+						variant={"outline"}
 						colorSchema={EnumColors.blue.default}
 					/>
 				</HScroll>
 				<HScroll gap={EnumGap.s} padding={EnumGap.s}>
-					<Btn.basic flex={1} text={t("basic")} buttonVariant={"ghost"} />
+					<Btn.basic flex={1} text={t("basic")} variant={"ghost"} />
 					<Btn.basic
 						flex={1}
 						text={t("basic")}
-						buttonVariant={"ghost"}
+						variant={"ghost"}
 						colorSchema={EnumColors.secondary.default}
 					/>
 					<Btn.basic
 						flex={1}
 						text={t("basic")}
-						buttonVariant={"ghost"}
+						variant={"ghost"}
 						colorSchema={EnumColors.destructive.default}
 					/>
 					<Btn.basic
 						flex={1}
 						text={t("basic")}
-						buttonVariant={"ghost"}
+						variant={"ghost"}
 						colorSchema={EnumColors.blue.default}
 					/>
 				</HScroll>
@@ -138,25 +138,25 @@ export function PageButton() {
 					<Btn.basic
 						flex={1}
 						text={t("basic")}
-						buttonVariant={"ghostSelected"}
+						variant={"ghostSelected"}
 						isActive={true}
 					/>
 					<Btn.basic
 						flex={1}
 						text={t("basic")}
-						buttonVariant={"ghostSelected"}
+						variant={"ghostSelected"}
 						colorSchema={EnumColors.secondary.default}
 					/>
 					<Btn.basic
 						flex={1}
 						text={t("basic")}
-						buttonVariant={"ghostSelected"}
+						variant={"ghostSelected"}
 						colorSchema={EnumColors.destructive.default}
 					/>
 					<Btn.basic
 						flex={1}
 						text={t("basic")}
-						buttonVariant={"ghostSelected"}
+						variant={"ghostSelected"}
 						colorSchema={EnumColors.blue.default}
 					/>
 				</HScroll>
@@ -164,33 +164,33 @@ export function PageButton() {
 					<Btn.basic
 						flex={1}
 						text={t("basic")}
-						buttonVariant={"link"}
+						variant={"link"}
 						isActive={true}
 						colorSchema={EnumColors.link.default}
 					/>
 					<Btn.basic
 						flex={1}
 						text={t("basic")}
-						buttonVariant={"link"}
+						variant={"link"}
 						colorSchema={EnumColors.secondary.default}
 					/>
 					<Btn.basic
 						flex={1}
 						text={t("basic")}
-						buttonVariant={"link"}
+						variant={"link"}
 						colorSchema={EnumColors.destructive.default}
 					/>
 					<Btn.basic
 						flex={1}
 						text={t("basic")}
-						buttonVariant={"link"}
+						variant={"link"}
 						colorSchema={EnumColors.blue.default}
 					/>
 				</HScroll>
 				<HStack gap={EnumGap.s}>
-					<Btn.basic flex={1} text={t("basic")} buttonVariant={"solid"} />
-					<Btn.basic flex={1} text={t("basic")} buttonVariant={"solid"} />
-					<Btn.basic flex={1} iconCenter={HouseIcon} buttonVariant={"solid"} />
+					<Btn.basic flex={1} text={t("basic")} variant={"solid"} />
+					<Btn.basic flex={1} text={t("basic")} variant={"solid"} />
+					<Btn.basic flex={1} iconCenter={HouseIcon} variant={"solid"} />
 				</HStack>
 				<HScroll gap={EnumGap.s} padding={EnumGap.s}>
 					<VStack height={200} width={200}>
@@ -198,7 +198,7 @@ export function PageButton() {
 							text={t("long")}
 							iconLeft={HouseIcon}
 							iconRight={HouseIcon}
-							buttonVariant={"solid"}
+							variant={"solid"}
 						/>
 					</VStack>
 					<VStack height={100} width={200}>
@@ -206,19 +206,19 @@ export function PageButton() {
 							text={t("long")}
 							iconLeft={HouseIcon}
 							iconRight={HouseIcon}
-							buttonVariant={"solid"}
+							variant={"solid"}
 						/>
 					</VStack>
 					<VStack height={100} width={200}>
 						<Btn.basic
 							text={t("basic")}
-							buttonVariant={"solid"}
+							variant={"solid"}
 							iconLeft={HouseIcon}
 							iconRight={HouseIcon}
 						/>
 					</VStack>
 					<VStack height={50} width={200}>
-						<Btn.basic text={t("long")} buttonVariant={"solid"} />
+						<Btn.basic text={t("long")} variant={"solid"} />
 					</VStack>
 				</HScroll>
 				<Btn.menu text={t("options")}>
@@ -232,10 +232,10 @@ export function PageButton() {
 					<Btn.basic text={t("menuItem")} />
 				</Btn.menu>
 				<VStack width={100} height={100}>
-					<Btn.basic text={t("long")} buttonVariant={"solid"} />
+					<Btn.basic text={t("long")} variant={"solid"} />
 				</VStack>
-				<Btn.basic text={t("long")} buttonVariant={"solid"} />
-				<Btn.basic text={t("basic")} buttonVariant={"solid"} />
+				<Btn.basic text={t("long")} variant={"solid"} />
+				<Btn.basic text={t("basic")} variant={"solid"} />
 
 				<Btn.menu text={t("options")} width={200}>
 					<Btn.basic text={t("menuItem")} />

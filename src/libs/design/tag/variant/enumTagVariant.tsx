@@ -1,5 +1,5 @@
 import { EnumColors } from "../../../../themes/colors/enum/enumColors";
-import { COLOR_SCHEMA_SELECTED } from "../../buttons/button/variant/enumButtonVariant";
+import { COLOR_SCHEMA_SELECTED } from "../../buttons/button/variant/buttonVariant";
 
 export enum EnumTagVariant {
 	solid = "solid",

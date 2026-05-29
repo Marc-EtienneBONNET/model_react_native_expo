@@ -1,4 +1,4 @@
-export const EnumButtonVariant = {
+export const EnumButtonMenuVariant = {
 	solid: "solid",
 	outline: "outline",
 	ghost: "ghost",

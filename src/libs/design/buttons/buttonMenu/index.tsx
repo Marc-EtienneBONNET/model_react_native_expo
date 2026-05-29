@@ -30,10 +30,11 @@ import { VStack } from "../../../basics/vStack";
 import { useTranslation } from "../../../i18n";
 import { Button } from "../button";
 import type { TypeButtonProps } from "../button/type/typeButtonProps";
+import { EnumButtonMenuVariant } from "./variant/enumButtonMenuVariant";
 
 type TypeButtonMenuProps = Omit<TypeButtonProps, "iconRight" | "onPress"> & {
 	children?: ReactNode;
-	isChevron?: boolean;
+	withChevron?: boolean;
 };
 
 const PANEL_MAX_HEIGHT = 200;
@@ -44,7 +45,7 @@ const ANIMATION_DURATION_MS = 180;
 
 export function ButtonMenu({
 	children,
-	isChevron = true,
+	withChevron = true,
 	...props
 }: TypeButtonMenuProps) {
 	const t = useTranslation("libs/buttonMenu");
@@ -65,7 +66,7 @@ export function ButtonMenu({
 		const _typedChild = child as ReactElement<TypeButtonProps>;
 		const _originalOnPress = _typedChild.props.onPress;
 		return cloneElement(_typedChild, {
-			buttonVariant: _typedChild.props.buttonVariant ?? "ghost",
+			variant: _typedChild.props.variant ?? EnumButtonMenuVariant.ghost,
 			numberOfLines: _typedChild.props.numberOfLines ?? 1,
 			onPress: (event: GestureResponderEvent) => {
 				_originalOnPress?.(event);
@@ -124,7 +125,7 @@ export function ButtonMenu({
 			<Button
 				{...props}
 				iconRight={
-					isChevron ? (_isOpen ? CaretUpIcon : CaretDownIcon) : undefined
+					withChevron ? (_isOpen ? CaretUpIcon : CaretDownIcon) : undefined
 				}
 				onPress={handlePress}
 			/>
